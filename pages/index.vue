@@ -130,7 +130,8 @@ const handleClearReservation = async (cabin: any) => {
         </template>
         <UButton
           v-else
-          @click="openBookingModal(cabin)"
+          :disabled="isAuthenticated"
+          @click="!isAuthenticated ? openBookingModal(cabin) : null"
         >
           {{ isAuthenticated ? 'Login to Book' : 'Book Now' }}
         </UButton>
