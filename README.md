@@ -6,6 +6,12 @@ npm install
 npm run dev
 ```
 
+Admin credentials:
+
+```
+username: admin@example.com
+password: password
+```
 
 # Nuxt Minimal Starter
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: 'Our Cabins | Wilderness Retreats',
+  title: 'Our Cabins | Lakeside Logic',
 })
 
 const { cabins: data, isSubmitting, book, clearReservation } = useBooking()
@@ -51,7 +51,6 @@ const handleClearReservation = async (cabin: any) => {
 
 <template>
   <main class="container mx-auto px-4 py-8">
-    <!-- Header with auth -->
     <div class="flex justify-between items-center mb-8">
       <h1 class="text-4xl font-bold">Our Cabins</h1>
       <div v-if="isAuthenticated" class="flex items-center gap-4">
@@ -133,7 +132,7 @@ const handleClearReservation = async (cabin: any) => {
           :disabled="isAuthenticated"
           @click="!isAuthenticated ? openBookingModal(cabin) : null"
         >
-          {{ isAuthenticated ? 'Login to Book' : 'Book Now' }}
+          Book Now
         </UButton>
       </UCard>
     </div>

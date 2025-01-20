@@ -10,10 +10,8 @@ export const useNotification = () => {
   let timeoutId: NodeJS.Timeout | null = null
 
   const show = (params: Notification) => {
-    // Clear any existing timeout
     if (timeoutId) clearTimeout(timeoutId)
 
-    // Set the notification
     notification.value = {
       variant: 'soft',
       timeout: 5000,

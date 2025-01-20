@@ -7,9 +7,7 @@ interface LoginResponse {
 export const useAuth = () => {
   const sessionCookie = useCookie<User | null>('session_user', {
     maxAge: 60 * 60 * 24 * 7, // 7 days
-    sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production',
-    path: '/'
+    sameSite: true
   })
 
   const user = useState<User | null>('user')

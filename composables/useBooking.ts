@@ -1,11 +1,6 @@
 import type { Cabin } from '~/types/db'
 import type { BookCabinResponse, GetCabinsResponse } from '~/types/api'
 
-interface CabinsResponse {
-  cabins: Cabin[]
-}
-
-// UI state composable
 export const useBookingModal = () => {
   const isOpen = ref(false)
   const selectedCabin = ref<Cabin | null>(null)
@@ -35,16 +30,15 @@ export const useBookingModal = () => {
     close
   }
 }
-
-// Booking logic composable
+  
 export const useBooking = () => {
-  const cabins = useState<CabinsResponse | null>('cabins', () => null)
+  const cabins = useState<GetCabinsResponse | null>('cabins', () => null)
   const isSubmitting = ref(false)
   const error = ref('')
 
   const fetchCabins = async () => {
     try {
-      const response = await $fetch<CabinsResponse>('/api/cabins')
+      const response = await $fetch<GetCabinsResponse>('/api/cabins')
       cabins.value = response
     } catch (err: any) {
       error.value = err.message || 'Failed to fetch cabins'
@@ -56,7 +50,7 @@ export const useBooking = () => {
     error.value = ''
 
     try {
-      await $fetch(`/api/cabins/${cabinId}/book`, {
+      await $fetch<BookCabinResponse>(`/api/cabins/${cabinId}/book`, {
         method: 'POST',
         body: { email }
       })
@@ -89,7 +83,7 @@ export const useBooking = () => {
   }
 
   // Fetch cabins on composable creation
-  if (process.client) {
+  if (import.meta.client) {
     fetchCabins()
   }
 
